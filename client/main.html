@@ -1,0 +1,206 @@
+<template name="base">
+  <head>
+      <title>Qualtify</title>
+      <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+  </head>
+
+  <body>
+      <section class="hero is-info" style="padding: 5px 0px;background-color:#ffc400;">
+          <div class="container">
+              <div class="columns is-vcentered">
+                  <div class="column">
+                  </div>
+              </div>
+          </div>
+      </section>
+      <nav class="navbar is-transparent">
+          <div class="container">
+              <div class="navbar-brand">
+                  <a class="navbar-item" href="http://bulma.io">
+                      <img src="logo.png" alt="Qualtify Logo" width="112" height="28">
+                  </a>
+
+                  <a class="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
+                      <span class="icon" style="color: #333;">
+          <i class="fa fa-github"></i>
+        </span>
+                  </a>
+
+                  <a class="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms" target="_blank">
+                      <span class="icon" style="color: #55acee;">
+          <i class="fa fa-twitter"></i>
+        </span>
+                  </a>
+
+                  <div class="navbar-burger burger" data-target="navMenuTransparentExample">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                  </div>
+              </div>
+
+              <div id="navMenuTransparentExample" class="navbar-menu">
+
+                  <div class="navbar-end">
+                    {{# if currentUser }}
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link no-carret">
+                          <i class="fa fa-bell" aria-hidden="true"></i>
+
+        </a>
+                        <div id="blogDropdown" class="navbar-dropdown is-boxed" data-style="width: 18rem;">
+
+                            <a class="navbar-item" href="/2017/07/24/access-previous-bulma-versions/">
+                                <div class="navbar-content">
+                                    <p>
+                                        <small class="has-text-info">24 Jul 2017</small>
+                                    </p>
+                                    <p>Access previous Bulma versions</p>
+                                </div>
+                            </a>
+
+                            <a class="navbar-item" href="/2017/03/10/new-field-element/">
+                                <div class="navbar-content">
+                                    <p>
+                                        <small class="has-text-info">10 Mar 2017</small>
+                                    </p>
+                                    <p>New field element (for better controls)</p>
+                                </div>
+                            </a>
+
+                            <a class="navbar-item" href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/">
+                                <div class="navbar-content">
+                                    <p>
+                                        <small class="has-text-info">11 Apr 2016</small>
+                                    </p>
+                                    <p>Metro UI CSS grid with Bulma tiles</p>
+                                </div>
+                            </a>
+
+                            <a class="navbar-item" href="http://bulma.io/blog/">
+            More posts
+          </a>
+                            <hr class="navbar-divider">
+                            <div class="navbar-item">
+                                <div class="navbar-content">
+                                    <div class="level is-mobile">
+                                        <div class="level-left">
+                                            <div class="level-item">
+                                                <strong>Stay up to date!</strong>
+                                            </div>
+                                        </div>
+                                        <div class="level-right">
+                                            <div class="level-item">
+                                                <a class="button is-rss is-small" href="http://bulma.io/atom.xml">
+                                                    <span class="icon is-small">
+                        <i class="fa fa-rss"></i>
+                      </span>
+                                                    <span>Subscribe</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                      <a class="navbar-item" onclick="$('.modal').addClass('is-active');$('.compose').focus();" href="#">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                      </a>
+
+                      <div class="navbar-item has-dropdown is-hoverable">
+                          <a class="navbar-link" href="">
+            {{username}}
+          </a>
+                          <div class="navbar-dropdown is-boxed">
+                              <a class="navbar-item " href="/documentation/overview/start/">
+              Profile
+            </a>
+                              <a class="navbar-item " href="http://bulma.io/documentation/modifiers/syntax/">
+              Settings
+            </a>
+                              <a class="navbar-item logout" href="http://bulma.io/documentation/grid/columns/">
+              Logout
+            </a>
+                          </div>
+                      </div>
+                      {{else}}
+                      <a class="navbar-item login" href="#">
+                        Login
+                      </a>
+                      {{/if}}
+                  </div>
+              </div>
+          </div>
+      </nav>
+  {{> yield}}
+
+
+
+      <div class="modal">
+    <div class="modal-background" onclick="$('.modal').removeClass('is-active');"></div>
+    <div class="modal-content">
+
+      <div class="card">
+        <div class="card-content">
+          <div class="field">
+    <label class="label">Message</label>
+    <div class="control">
+      <textarea class="textarea compose" placeholder="I think that the Earth is flat."></textarea>
+    </div>
+  </div>
+        <button class="modal-close is-large" onclick="$('.modal').removeClass('is-active');"></button>
+      </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+  </body>
+</template>
+
+<template name="main">
+  <div class="columns">
+      <div class="column is-6 is-offset-3">
+          <h1 class="title">Feed</h1>
+          <div class="box">
+              <article class="media">
+                  <div class="media-left">
+                      <figure class="image is-64x64">
+                          <img class="avatar" src="https://avatars3.githubusercontent.com/u/{{avatar}}" alt="User Avatar" />
+                      </figure>
+                  </div>
+                  <div class="media-content">
+                      <div class="content">
+                          <p>
+                              <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
+                              <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+
+
+                      </p>
+                      </div>
+                      <nav class="level is-mobile">
+                          <div class="level-left">
+                              <a class="level-item">
+                                  <span class="icon is-small"><i class="fa fa-reply"></i></span>
+                              </a>
+                              <a class="level-item">
+                                  <span class="icon is-small"><i class="fa fa-retweet"></i></span>
+                              </a>
+                              <a class="level-item">
+                                  <span class="icon is-small"><i class="fa fa-heart"></i></span>
+                              </a>
+                          </div>
+                      </nav>
+                  </div>
+              </article>
+          </div>
+      </div>
+  </div>
+</template>
